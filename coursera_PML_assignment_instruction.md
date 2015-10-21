@@ -1,6 +1,6 @@
 # Coursera Practical Machine Learning Assignment Instruction
 -------------------------------------------------------------
-###1、Data Proceess
+###1、Data Process
 After we import the "training.csv" and "testing.csv" ,we can see the raw data has up to 160 features, what`s more, many of the features are empty,NA or excel errors. So, my first step was delete unnecessary features, extract useful features in the two data sets.  
 In this stage, I cut the featuring extracting work into 3 steps,first I deleted the features totally empty, then deleted some features which I transform space error、null、excel errors into NA before I deleted them,last,I deleted the timestamp and window feature.   
 After all, I got the final feature set "final_feature",I would apply it on the data set having 20-instances.  
