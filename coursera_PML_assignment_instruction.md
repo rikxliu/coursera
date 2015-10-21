@@ -6,6 +6,7 @@ In this stage, I cut the featuring extracting work into 3 steps,first I deleted 
 After all, I got the final feature set "final_feature",I would apply it on the data set having 20-instances.  
 The feature number fall from 160 to 55 in the end.
 
+    # import  the packages needed ,if you dont install them ,you can install.packages("randomForest") in the beginning
     library(caret)
     library(ggplot2)
     library(randomForest)

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>coursera_PML_assignment_instruction</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>Coursera Practical Machine Learning Assignment Instruction</h1>
+<hr />
+<h3>1、Data Proceess</h3>
+<p>After we import the &quot;training.csv&quot; and &quot;testing.csv&quot; ,we can see the raw data has up to 160 features, what`s more, many of the features are empty,NA or excel errors. So, my first step was delete unnecessary features, extract useful features in the two data sets.<br />
+In this stage, I cut the featuring extracting work into 3 steps,first I deleted the features totally empty, then deleted some features which I transform space error、null、excel errors into NA before I deleted them,last,I deleted the timestamp and window feature. <br />
+After all, I got the final feature set &quot;final_feature&quot;,I would apply it on the data set having 20-instances.<br />
+The feature number fall from 160 to 55 in the end.</p>
+<pre><code># import  the packages needed ,if you dont install them ,you can install.packages(&quot;randomForest&quot;) in the beginning
+library(caret)
+library(ggplot2)
+library(randomForest)
+
+# import the raw data ,delete column number in the first column
+raw_data &lt;- read.csv(&quot;c://pml-training.csv&quot;,header=T)
+raw_task &lt;- read.csv(&quot;c://pml-testing.csv&quot;,header=T)
+raw_data &lt;- raw_data[,-1]
+raw_task &lt;- raw_task[,-1]
+
+# calculate the total empty columns, extract the first feature set
+NA_col &lt;- as.data.frame(colSums(is.na(raw_data)))
+remain_feature&lt;- colnames(raw_data[colSums(is.na(raw_data)) == 0])
+
+# delete the empty features in the raw training and testing data
+raw_data &lt;- raw_data[remain_feature]
+raw_task &lt;- raw_task[remain_feature[-92]]  ##drop the classe feature in the testing data 
+
+# create the training and testing date with the original training data
+inTrain = createDataPartition(raw_data$classe, p = 6/10)[[1]]
+train = raw_data[ inTrain,]
+test = raw_data[-inTrain,]
+
+# transform other columns with empty content or too many nulls  into NA, then drop them 
+train[train == ' '] &lt;- NA
+test[test == ' '] &lt;- NA
+train[train == ''] &lt;- NA
+test[test == ''] &lt;- NA
+final_feature&lt;- colnames(train[colSums(is.na(train)) == 0])
+
+final_train = train[final_feature]
+final_test = test[final_feature]
+
+# drop the timestamp and window features ,get the final train and test data set
+final_train &lt;- final_train[,-(2:5)]
+final_test &lt;- final_test[,-(2:5)]
+</code></pre>
+
+<h3>2、Basic Data Explore</h3>
+<p>I made some basic data explore work on the final_train training set with ggplot package, such as histogram etc. I didn`t list all the code ,the followings are examples,if your like ggplot,it would be easy to understand.</p>
+<pre><code># some basic data explore 
+summary(final_train)
+table(final_train$user_name,final_train$classe)
+ggplot(final_train,aes(classe,fill=user_name))+geom_bar()
+ggplot(final_train,aes(roll_belt,fill=classe))+geom_histogram()
+</code></pre>
+
+<h3>3、Build Model And Predict</h3>
+<p>I used the randomForest package to train the predicting model instead of using caret with ‘rf’ mothod。 The number of the randomForest tree is 50，I think that would be good enough to do the job, since train 500 trees was slower on my laptop.<br />
+<strong>Talking about CV on the training data set.</strong>since randomForest use sampling itself，then it will produce the out of sample data,<strong>so I used the randomForest model`s OOB   estimate of  error rate as an instead of error in cross-validation,it was 0.55%,</strong>it would be a good predicting model I thought.<br />
+The model had a 100% accuracy on the final<em>train training set, and 99.62% on the final</em>test testing set.<br />
+I can see the accuracy of the model had a good performance on the training and testing data, and a very small out of samples error(OOB 0.55%),I hoped it would have a good predict on the submission job.  </p>
+<pre><code># set seed and use randomForest algorithm to fit the predicting model and self CV in randomForest
+set.seed(10000)
+fitRF &lt;- randomForest(classe~.,data=final_train,ntree=50)
+fitRF
+
+#  OOB estimate of  error rate: 0.55% (just like out of sample error in cross-validation)
+pRF_final_train &lt;- predict(fitRF,newdata=final_train[-55])
+confusionMatrix(final_train$classe,pRF_final_train)  # Accuracy : 1   on the training data set
+
+pRF_final_test &lt;- predict(fitRF,newdata=final_test)
+confusionMatrix(final_test$classe,pRF_final_test)# Accuracy : 0.9934 on the testing data set
+
+# process the raw data of the predicting job, keep the final feature of the training and testing data
+raw_submission &lt;- subset(raw_task,select = names(final_test[-55])) 
+
+# apply  the RF model fitted  before on the processed  predicting job raw data and transform it into character
+pRF_submission_result &lt;- predict(fitRF,newdata=raw_submission)
+pRF_submission_result &lt;- as.character(pRF_submission_result)
+</code></pre>
+
+<h3>4、Produce Submission Results</h3>
+<p>I used the official funtion to produce the final submission results, after I submitted to the web,it turned to be all right.</p>
+<pre><code># use the official function to produce the final submission result and write down it 
+pml_write_files = function(x){
+  n = length(x)
+  for(i in 1:n){
+filename = paste0(&quot;problem_id_&quot;,i,&quot;.txt&quot;)
+write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}
+pml_write_files(pRF_submission_result)
+</code></pre>
+
+<p>Thanks for your time and patience in reviewing my assignment,hope you have a nice day and more gains on Coursera.  </p>
+<p>Your friend <br />
+rikxliu</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
