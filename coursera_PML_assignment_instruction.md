@@ -98,6 +98,11 @@ I used the official funtion to produce the final submission results, after I sub
 
 Thanks for your time and patience in reviewing my assignment,hope you have a nice day and more gains on Coursera.  
 
+And thanks the data contributor.
+The data for this project come from this [source](http://groupware.les.inf.puc-rio.br/har).
+[training data](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv)
+[test data](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv)
+
 Your friend   
 rikxliu
 
