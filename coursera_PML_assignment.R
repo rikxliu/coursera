@@ -1,5 +1,5 @@
 
-#1、Data Process----------------------------------------------------------------------------------------
+#1-Data Process----------------------------------------------------------------------------------------
 # import  the packages needed ,if you dont install them ,you can install.packages("randomForest") in the beginning
 library(caret)
 library(ggplot2)
@@ -39,7 +39,7 @@ final_train <- final_train[,-(2:5)]
 final_test <- final_test[,-(2:5)]
 
 
-#2、Basic Data Explore----------------------------------------------------------------------------------------
+#2-Basic Data Explore----------------------------------------------------------------------------------------
 # some basic data explore 
 summary(final_train)
 table(final_train$user_name,final_train$classe)
@@ -47,7 +47,7 @@ ggplot(final_train,aes(classe,fill=user_name))+geom_bar()
 ggplot(final_train,aes(roll_belt,fill=classe))+geom_histogram()
 
 
-#3、Build Model And Predict----------------------------------------------------------------------------------------
+#3-Build Model And Predict----------------------------------------------------------------------------------------
 # set seed and use randomForest algorithm to fit the predicting model and self CV in randomForest
 set.seed(10000)
 fitRF <- randomForest(classe~.,data=final_train,ntree=50)
@@ -69,7 +69,7 @@ pRF_submission_result <- predict(fitRF,newdata=raw_submission)
 pRF_submission_result <- as.character(pRF_submission_result)
 
 
-#4、Produce Submission Results----------------------------------------------------------------------------------------
+#4-Produce Submission Results----------------------------------------------------------------------------------------
 # use the official function to produce the final submission result and write down it 
 pml_write_files = function(x){
   n = length(x)
