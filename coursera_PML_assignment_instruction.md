@@ -57,22 +57,37 @@ I made some basic data explore work on the final_train training set with ggplot 
 
 ###3、Build Model And Predict 
 I used the randomForest package to train the predicting model instead of using caret with ‘rf’ mothod。 The number of the randomForest tree is 50，I think that would be good enough to do the job, since train 500 trees was slower on my laptop.  
-**Talking about CV on the training data set.**since randomForest use sampling itself，then it will produce the out of sample data,**so I used the randomForest model`s OOB   estimate of  error rate as an instead of error in cross-validation,it was 0.55%,**it would be a good predicting model I thought.  
+**Talking about CV on the training data set.**since randomForest use sampling itself，then it will produce the out of sample data,**so I inspected the randomForest model`s OOB estimate of  error rate at the same time,it was 0.55%,**it would be a good predicting model I thought.    
+Later, I made a **10 folds corss validation on the final_trian data set**,and I made a small function to calculate the error rate on rest testing date, it turned to be a little higher than the randomForest OOB error rate,the out of sample error was between 5%~8%.  
 The model had a 100% accuracy on the final_train training set, and 99.62% on the final_test testing set.  
-I can see the accuracy of the model had a good performance on the training and testing data, and a very small out of samples error(OOB 0.55%),I hoped it would have a good predict on the submission job.  
+I can see the accuracy of the model had a good performance on the training and testing data, and a very small out of samples error(OOB 0.55%),and I hoped it would have a good predict on the submission job.  
 
 
-    # set seed and use randomForest algorithm to fit the predicting model and self CV in randomForest
+    #set seed and use randomForest algorithm to fit the predicting model and self CV in randomForest
     set.seed(10000)
     fitRF <- randomForest(classe~.,data=final_train,ntree=50)
     fitRF
     
-    #  OOB estimate of  error rate: 0.55% (just like out of sample error in cross-validation)
+    #  randomForest use sampling itself，then produce the out of sample data,so we can user OOB stimate of  error rate as an instead of error  in cross-validation
+    #  OOB estimate of  error rate: 0.55%
     pRF_final_train <- predict(fitRF,newdata=final_train[-55])
     confusionMatrix(final_train$classe,pRF_final_train)  # Accuracy : 1   on the training data set
     
-    pRF_final_test <- predict(fitRF,newdata=final_test)
+    pRF_final_test <- predict(fitRF,newdata=final_test[-55])
     confusionMatrix(final_test$classe,pRF_final_test)# Accuracy : 0.9934 on the testing data set
+    
+    #  use carete createFolds function to produce 10 folds corss validation on the final_train ,the error rate is  in 5%~*8%
+    fold <- createFolds(final_train$classe,k=10)
+    for (i in 1:10) {
+      cv_train <- final_train[unlist(fold[i]),]
+      cv_test <- final_train[-unlist(fold[i]),]
+      library(randomForest)
+      set.seed(10000)
+      modelRF <- randomForest(classe~.,data=cv_train,ntree=50)
+      cv_test_predict <- predict(modelRF,newdata=cv_test[-55])
+      error_rate <- sum(cv_test_predict != cv_test$classe)/dim(cv_test)[1]
+      print(error_rate)
+    }
     
     # process the raw data of the predicting job, keep the final feature of the training and testing data
     raw_submission <- subset(raw_task,select = names(final_test[-55])) 

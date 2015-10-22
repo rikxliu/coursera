@@ -58,8 +58,21 @@ fitRF
 pRF_final_train <- predict(fitRF,newdata=final_train[-55])
 confusionMatrix(final_train$classe,pRF_final_train)  # Accuracy : 1   on the training data set
 
-pRF_final_test <- predict(fitRF,newdata=final_test)
+pRF_final_test <- predict(fitRF,newdata=final_test[-55])
 confusionMatrix(final_test$classe,pRF_final_test)    # Accuracy : 0.9934 on the testing data set
+
+#  use carete createFolds function to produce 10 folds corss validation on the final_train ,the error rate is  in 5%~*8%
+fold <- createFolds(final_train$classe,k=10)
+for (i in 1:10) {
+  cv_train <- final_train[unlist(fold[i]),]
+  cv_test <- final_train[-unlist(fold[i]),]
+  library(randomForest)
+  set.seed(10000)
+  modelRF <- randomForest(classe~.,data=cv_train,ntree=50)
+  cv_test_predict <- predict(modelRF,newdata=cv_test[-55])
+  error_rate <- sum(cv_test_predict != cv_test$classe)/dim(cv_test)[1]
+  print(error_rate)
+}
 
 # process the raw data of the predicting job, keep the final feature of the training and testing data
 raw_submission <- subset(raw_task,select = names(final_test[-55])) 
